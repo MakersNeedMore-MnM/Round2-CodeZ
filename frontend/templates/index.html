@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TwinLearn — AI-Powered Digital Twin Learning Platform</title>
+  <meta name="description" content="TwinLearn creates a living digital twin of every student to predict learning struggles before they happen and personalize education in real time.">
+  <link rel="stylesheet" href="/static/css/app.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Floating particles background -->
+<div class="particles" id="particles"></div>
+
+<!-- Loading Screen -->
+<div class="loading-screen" id="loading-screen" style="display:none;">
+  <div style="font-size:2.5rem;margin-bottom:16px;animation:float 3s ease-in-out infinite;">🧬</div>
+  <div class="spinner"></div>
+  <div class="text-muted" id="loading-msg" style="margin-top:16px;font-weight:500;">Loading...</div>
+</div>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║        LANDING PAGE         ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<div class="view active" id="view-landing">
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,12,20,0.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(99,179,237,0.08);">
+    <div style="display:flex;align-items:center;gap:12px;cursor:pointer;" onclick="navigate('landing')">
+      <div style="width:38px;height:38px;background:linear-gradient(135deg,#6366f1,#a855f7);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 0 16px rgba(99,102,241,0.4);">🧬</div>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-0.02em;">TwinLearn</span>
+    </div>
+    <div style="display:flex;gap:12px;align-items:center;">
+      <button class="btn btn-ghost" onclick="navigate('login')">Sign In</button>
+      <button class="btn btn-primary" onclick="navigate('login')">Try Live Demo →</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-badge">🚀 Predictive • Preventive • Personalized</div>
+    <h1 class="hero-title">
+      Your Student Has a<br>
+      <span class="text-gradient">Digital Twin</span>
+    </h1>
+    <p class="hero-subtitle">
+      TwinLearn builds a living AI model of every student — continuously tracking knowledge state, forgetting curves, and attention patterns to <strong>predict struggles before they happen</strong> and personalize learning in real time.
+    </p>
+    <div class="hero-actions">
+      <button class="btn btn-primary btn-lg" onclick="navigate('login')">🎓 Explore Demo Accounts</button>
+      <button class="btn btn-secondary btn-lg" onclick="scrollToFeatures()">See How It Works ↓</button>
+    </div>
+
+    <!-- Hero stats -->
+    <div style="display:flex;gap:48px;margin-top:64px;padding-top:40px;border-top:1px solid rgba(99,179,237,0.1);animation:fadeSlideIn 0.6s ease 0.4s both;flex-wrap:wrap;justify-content:center;">
+      <div style="text-align:center;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:900;background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">9.5/10</div>
+        <div style="font-size:0.8rem;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-top:4px;">Innovation Score</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:900;background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">100%</div>
+        <div style="font-size:0.8rem;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-top:4px;">Real-World Impact</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:900;background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">8</div>
+        <div style="font-size:0.8rem;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-top:4px;">Curriculum Concepts</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:900;background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">4</div>
+        <div style="font-size:0.8rem;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-top:4px;">Stakeholder Personas</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" style="padding:80px 48px;max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:64px;">
+      <div class="hero-badge" style="margin:0 auto 16px;">Core Innovation</div>
+      <h2 style="font-size:2.5rem;font-weight:900;">More Than a Dashboard.<br><span class="text-gradient">A Living Digital Twin.</span></h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;">
+      <div class="card" style="border-color:#6366f130;transition:all 0.3s ease;" onmouseover="this.style.borderColor='#6366f180';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#6366f130';this.style.transform='none'">
+        <div style="width:48px;height:48px;background:#6366f120;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;">🧬</div>
+        <h3 style="font-size:1.1rem;margin-bottom:8px;font-weight:700;">Digital Twin Engine</h3>
+        <p class="text-sm text-muted">Every student gets a dynamic JSON simulation state — updated after every quiz, click, and session — modeling mastery, forgetting, pace, confidence, and motivation.</p>
+      </div>
+
+      <div class="card" style="border-color:#a855f730;transition:all 0.3s ease;" onmouseover="this.style.borderColor='#a855f780';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#a855f730';this.style.transform='none'">
+        <div style="width:48px;height:48px;background:#a855f720;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;">📉</div>
+        <h3 style="font-size:1.1rem;margin-bottom:8px;font-weight:700;">Ebbinghaus Forgetting Curve</h3>
+        <p class="text-sm text-muted">The system predicts when each concept will fade from memory using stability decay models and schedules targeted reviews before retention drops below 65%.</p>
+      </div>
+
+      <div class="card" style="border-color:#06b6d430;transition:all 0.3s ease;" onmouseover="this.style.borderColor='#06b6d480';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#06b6d430';this.style.transform='none'">
+        <div style="width:48px;height:48px;background:#06b6d420;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;">🔮</div>
+        <h3 style="font-size:1.1rem;margin-bottom:8px;font-weight:700;">Simulation Mode</h3>
+        <p class="text-sm text-muted">"What if I study 30 minutes a day for 2 weeks?" The digital twin projects a 3-scenario forecast — best case, expected, and worst case — before you commit to a plan.</p>
+      </div>
+
+      <div class="card" style="border-color:#f59e0b30;transition:all 0.3s ease;" onmouseover="this.style.borderColor='#f59e0b80';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#f59e0b30';this.style.transform='none'">
+        <div style="width:48px;height:48px;background:#f59e0b20;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;">⚠️</div>
+        <h3 style="font-size:1.1rem;margin-bottom:8px;font-weight:700;">Predictive Risk Alerts</h3>
+        <p class="text-sm text-muted">Instead of "You scored 40%", TwinLearn warns "You're likely to struggle with Calculus Integration within 12 days unless prerequisite concepts are reinforced."</p>
+      </div>
+
+      <div class="card" style="border-color:#10b98130;transition:all 0.3s ease;" onmouseover="this.style.borderColor='#10b98180';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#10b98130';this.style.transform='none'">
+        <div style="width:48px;height:48px;background:#10b98120;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;">🤖</div>
+        <h3 style="font-size:1.1rem;margin-bottom:8px;font-weight:700;">AI-Adaptive Quizzing</h3>
+        <p class="text-sm text-muted">Bayesian Knowledge Tracing personalizes questions to your current mastery level, dynamically updating probabilities with slip and guess rates.</p>
+      </div>
+
+      <div class="card" style="border-color:#ef444430;transition:all 0.3s ease;" onmouseover="this.style.borderColor='#ef444480';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#ef444430';this.style.transform='none'">
+        <div style="width:48px;height:48px;background:#ef444420;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;">👩‍🏫</div>
+        <h3 style="font-size:1.1rem;margin-bottom:8px;font-weight:700;">Teacher & Parent Ecosystem</h3>
+        <p class="text-sm text-muted">Teachers monitor a class-wide risk matrix with early-warning flags. Parents receive plain-language summaries and supportive intervention recommendations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Accounts Section -->
+  <section style="padding:60px 48px;max-width:1000px;margin:0 auto;text-align:center;">
+    <h2 style="font-size:2rem;margin-bottom:8px;">Try the Live Demo Personas</h2>
+    <p class="text-muted mb-6">Click any account below to sign in instantly with seeded data</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;">
+      <div class="card" style="cursor:pointer;text-align:left;border-color:rgba(239,68,68,0.3);" onclick="fillDemo('alex@demo.com')">
+        <div style="font-size:1.8rem;margin-bottom:8px;">🔴</div>
+        <div style="font-weight:700;font-size:0.95rem;margin-bottom:2px;">Alex Rivera</div>
+        <div class="text-xs text-muted mb-2">alex@demo.com</div>
+        <div class="text-xs" style="color:#f87171;">High Risk Student · Struggling in Calculus</div>
+      </div>
+      <div class="card" style="cursor:pointer;text-align:left;border-color:rgba(16,185,129,0.3);" onclick="fillDemo('priya@demo.com')">
+        <div style="font-size:1.8rem;margin-bottom:8px;">🟢</div>
+        <div style="font-weight:700;font-size:0.95rem;margin-bottom:2px;">Priya Sharma</div>
+        <div class="text-xs text-muted mb-2">priya@demo.com</div>
+        <div class="text-xs" style="color:#34d399;">Top Performer · Visual Learner</div>
+      </div>
+      <div class="card" style="cursor:pointer;text-align:left;border-color:rgba(59,130,246,0.3);" onclick="fillDemo('james@demo.com')">
+        <div style="font-size:1.8rem;margin-bottom:8px;">🔵</div>
+        <div style="font-weight:700;font-size:0.95rem;margin-bottom:2px;">James Okafor</div>
+        <div class="text-xs text-muted mb-2">james@demo.com</div>
+        <div class="text-xs" style="color:#60a5fa;">Average Student · Steady Progress</div>
+      </div>
+      <div class="card" style="cursor:pointer;text-align:left;border-color:rgba(6,182,212,0.3);" onclick="fillDemo('ms.chen@demo.com')">
+        <div style="font-size:1.8rem;margin-bottom:8px;">👩‍🏫</div>
+        <div style="font-weight:700;font-size:0.95rem;margin-bottom:2px;">Ms. Linda Chen</div>
+        <div class="text-xs text-muted mb-2">ms.chen@demo.com</div>
+        <div class="text-xs" style="color:#22d3ee;">Teacher · 24 Students, 3 at Risk</div>
+      </div>
+      <div class="card" style="cursor:pointer;text-align:left;border-color:rgba(168,85,247,0.3);" onclick="fillDemo('parent@demo.com')">
+        <div style="font-size:1.8rem;margin-bottom:8px;">👨‍👧</div>
+        <div style="font-weight:700;font-size:0.95rem;margin-bottom:2px;">Maria Rivera</div>
+        <div class="text-xs text-muted mb-2">parent@demo.com</div>
+        <div class="text-xs" style="color:#c084fc;">Parent · Child Analytics & Advice</div>
+      </div>
+      <div class="card" style="cursor:pointer;text-align:left;border-color:rgba(245,158,11,0.3);" onclick="fillDemo('admin@demo.com')">
+        <div style="font-size:1.8rem;margin-bottom:8px;">⚙️</div>
+        <div style="font-weight:700;font-size:0.95rem;margin-bottom:2px;">Admin User</div>
+        <div class="text-xs text-muted mb-2">admin@demo.com</div>
+        <div class="text-xs" style="color:#fbbf24;">Admin · Platform Statistics</div>
+      </div>
+    </div>
+    <div style="margin-top:24px;">
+      <span class="text-muted text-sm">All demo accounts use password: </span>
+      <code style="background:var(--color-surface);padding:4px 10px;border-radius:6px;font-size:0.9rem;border:1px solid var(--color-border);font-family:'JetBrains Mono',monospace;color:#a5b4fc;">demo123</code>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="text-align:center;padding:48px;border-top:1px solid var(--color-border);color:#64748b;font-size:0.85rem;">
+    <div style="font-weight:700;color:#94a3b8;margin-bottom:6px;">🧬 TwinLearn — Autonomous Digital Twin Learning Architecture</div>
+    Predictive Analytics • Ebbinghaus Forgetting Curves • Bayesian Knowledge Tracing
+  </footer>
+</div>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║         LOGIN PAGE          ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<div class="view" id="view-login">
+  <div class="auth-page">
+    <div style="width:100%;max-width:880px;">
+      <!-- Logo Header & Tabs -->
+      <div style="text-align:center;margin-bottom:32px;">
+        <div style="display:flex;gap:10px;justify-content:center;align-items:center;margin-bottom:24px;cursor:pointer;" onclick="navigate('landing')">
+          <div style="width:40px;height:40px;background:linear-gradient(135deg,#6366f1,#a855f7);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 0 20px rgba(99,102,241,0.4);">🧬</div>
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1.6rem;letter-spacing:-0.02em;">TwinLearn</span>
+        </div>
+        <div class="tabs" style="margin:0 auto;max-width:320px;">
+          <button class="tab active" id="tab-btn-signin" onclick="switchAuthTab('signin')">Sign In</button>
+          <button class="tab" id="tab-btn-register" onclick="switchAuthTab('register')">Create Account</button>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;">
+        <!-- Sign In Card -->
+        <div class="auth-card" id="auth-signin">
+          <h2 style="font-size:1.35rem;margin-bottom:6px;">Welcome Back</h2>
+          <p class="text-muted text-sm mb-4">Sign into your TwinLearn account</p>
+          <form id="login-form">
+            <div class="form-group">
+              <label class="form-label" for="login-email">Email Address</label>
+              <input class="form-input" type="email" id="login-email" placeholder="you@demo.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="login-password">Password</label>
+              <input class="form-input" type="password" id="login-password" placeholder="demo123" required>
+            </div>
+            <button class="btn btn-primary" style="width:100%;margin-top:8px;" type="submit">Sign In →</button>
+          </form>
+          <button class="btn btn-ghost" style="width:100%;margin-top:10px;" onclick="navigate('landing')">← Back to Home</button>
+        </div>
+
+        <!-- Quick Demo Login Card -->
+        <div class="auth-card">
+          <h3 style="font-size:1.05rem;margin-bottom:4px;display:flex;align-items:center;gap:8px;">
+            <span>⚡</span> One-Click Demo Personas
+          </h3>
+          <p class="text-muted text-xs mb-3">Click any persona below to auto-fill credentials</p>
+          
+          <div onclick="fillDemo('alex@demo.com')" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius-md);cursor:pointer;border:1px solid var(--color-border);margin-bottom:8px;transition:all 0.2s;background:rgba(255,255,255,0.02);"
+               onmouseover="this.style.borderColor='var(--color-primary)';this.style.background='rgba(99,102,241,0.08)'" 
+               onmouseout="this.style.borderColor='var(--color-border)';this.style.background='rgba(255,255,255,0.02)'">
+            <span style="font-size:1.3rem;">🔴</span>
+            <div style="flex:1">
+              <div style="font-size:0.85rem;font-weight:600;">Alex Rivera</div>
+              <div class="text-xs text-muted">High Risk Student (Calculus struggle)</div>
+            </div>
+            <span class="badge badge-danger" style="font-size:0.65rem;">student</span>
+          </div>
+
+          <div onclick="fillDemo('priya@demo.com')" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius-md);cursor:pointer;border:1px solid var(--color-border);margin-bottom:8px;transition:all 0.2s;background:rgba(255,255,255,0.02);"
+               onmouseover="this.style.borderColor='var(--color-primary)';this.style.background='rgba(99,102,241,0.08)'" 
+               onmouseout="this.style.borderColor='var(--color-border)';this.style.background='rgba(255,255,255,0.02)'">
+            <span style="font-size:1.3rem;">🟢</span>
+            <div style="flex:1">
+              <div style="font-size:0.85rem;font-weight:600;">Priya Sharma</div>
+              <div class="text-xs text-muted">High Performer (Visual Learner)</div>
+            </div>
+            <span class="badge badge-success" style="font-size:0.65rem;">student</span>
+          </div>
+
+          <div onclick="fillDemo('james@demo.com')" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius-md);cursor:pointer;border:1px solid var(--color-border);margin-bottom:8px;transition:all 0.2s;background:rgba(255,255,255,0.02);"
+               onmouseover="this.style.borderColor='var(--color-primary)';this.style.background='rgba(99,102,241,0.08)'" 
+               onmouseout="this.style.borderColor='var(--color-border)';this.style.background='rgba(255,255,255,0.02)'">
+            <span style="font-size:1.3rem;">🔵</span>
+            <div style="flex:1">
+              <div style="font-size:0.85rem;font-weight:600;">James Okafor</div>
+              <div class="text-xs text-muted">Average Student (Steady Progress)</div>
+            </div>
+            <span class="badge badge-info" style="font-size:0.65rem;">student</span>
+          </div>
+
+          <div onclick="fillDemo('ms.chen@demo.com')" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius-md);cursor:pointer;border:1px solid var(--color-border);margin-bottom:8px;transition:all 0.2s;background:rgba(255,255,255,0.02);"
+               onmouseover="this.style.borderColor='var(--color-primary)';this.style.background='rgba(99,102,241,0.08)'" 
+               onmouseout="this.style.borderColor='var(--color-border)';this.style.background='rgba(255,255,255,0.02)'">
+            <span style="font-size:1.3rem;">👩‍🏫</span>
+            <div style="flex:1">
+              <div style="font-size:0.85rem;font-weight:600;">Ms. Linda Chen</div>
+              <div class="text-xs text-muted">Class Teacher (Risk Heatmap)</div>
+            </div>
+            <span class="badge badge-info" style="font-size:0.65rem;">teacher</span>
+          </div>
+
+          <div onclick="fillDemo('parent@demo.com')" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius-md);cursor:pointer;border:1px solid var(--color-border);margin-bottom:8px;transition:all 0.2s;background:rgba(255,255,255,0.02);"
+               onmouseover="this.style.borderColor='var(--color-primary)';this.style.background='rgba(99,102,241,0.08)'" 
+               onmouseout="this.style.borderColor='var(--color-border)';this.style.background='rgba(255,255,255,0.02)'">
+            <span style="font-size:1.3rem;">👨‍👧</span>
+            <div style="flex:1">
+              <div style="font-size:0.85rem;font-weight:600;">Maria Rivera</div>
+              <div class="text-xs text-muted">Parent of Alex Rivera</div>
+            </div>
+            <span class="badge badge-warning" style="font-size:0.65rem;">parent</span>
+          </div>
+
+          <div onclick="fillDemo('admin@demo.com')" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius-md);cursor:pointer;border:1px solid var(--color-border);transition:all 0.2s;background:rgba(255,255,255,0.02);"
+               onmouseover="this.style.borderColor='var(--color-primary)';this.style.background='rgba(99,102,241,0.08)'" 
+               onmouseout="this.style.borderColor='var(--color-border)';this.style.background='rgba(255,255,255,0.02)'">
+            <span style="font-size:1.3rem;">⚙️</span>
+            <div style="flex:1">
+              <div style="font-size:0.85rem;font-weight:600;">Admin User</div>
+              <div class="text-xs text-muted">System & Model Health</div>
+            </div>
+            <span class="badge" style="background:rgba(168,85,247,0.2);color:#c084fc;font-size:0.65rem;">admin</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Register Form (hidden by default) -->
+      <div class="auth-card" id="auth-register" style="display:none;margin-top:24px;max-width:440px;margin-left:auto;margin-right:auto;">
+        <h2 style="font-size:1.4rem;margin-bottom:6px;">Create Account</h2>
+        <p class="text-muted text-sm mb-4">Join TwinLearn today and launch your twin</p>
+        <form id="register-form">
+          <div class="form-group">
+            <label class="form-label" for="reg-name">Full Name</label>
+            <input class="form-input" type="text" id="reg-name" placeholder="Alex Rivera" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reg-email">Email Address</label>
+            <input class="form-input" type="email" id="reg-email" placeholder="you@email.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reg-role">Role</label>
+            <select class="form-input" id="reg-role">
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+              <option value="parent">Parent</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reg-password">Password</label>
+            <input class="form-input" type="password" id="reg-password" placeholder="Min. 6 characters" required minlength="6">
+          </div>
+          <button class="btn btn-primary" style="width:100%;margin-top:8px;" type="submit">Create Account 🎉</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ╔═══════════════════════════════╗ -->
+<!-- ║    APP SHELL (all dashboards) ║ -->
+<!-- ╚═══════════════════════════════╝ -->
+<div class="app-layout" id="app-shell" style="display:none;">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="app-sidebar" style="display:none;"></aside>
+  <!-- Main Content -->
+  <main class="main-content" id="main-content">
+    <!-- Student Views -->
+    <div class="view" id="view-student-home"></div>
+    <div class="view" id="view-student-twin"></div>
+    <div class="view" id="view-student-path"></div>
+    <div class="view" id="view-student-quiz">
+      <div class="topbar">
+        <h1 style="font-size:1.25rem;font-weight:800;">🧠 Adaptive Quiz</h1>
+        <div class="text-sm text-muted">Select a concept from Learning Path to begin</div>
+      </div>
+      <div class="page-content">
+        <div class="empty-state" style="padding:80px 24px;">
+          <div class="empty-icon">🧠</div>
+          <h3>Ready to learn?</h3>
+          <p class="text-muted">Go to Learning Path and click Practice on any concept to take an adaptive quiz</p>
+          <button class="btn btn-primary mt-4" onclick="navigate('student-path')">Go to Learning Path →</button>
+        </div>
+      </div>
+    </div>
+    <div class="view" id="view-student-sim"></div>
+    <div class="view" id="view-student-history"></div>
+
+    <!-- Teacher Views -->
+    <div class="view" id="view-teacher-home"></div>
+    <div class="view" id="view-teacher-class"></div>
+    <div class="view" id="view-teacher-alerts"></div>
+
+    <!-- Parent Views -->
+    <div class="view" id="view-parent-home"></div>
+    <div class="view" id="view-parent-progress"></div>
+
+    <!-- Admin Views -->
+    <div class="view" id="view-admin-home"></div>
+    <div class="view" id="view-admin-users"></div>
+    <div class="view" id="view-admin-analytics"></div>
+  </main>
+</div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
