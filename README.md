@@ -1,179 +1,85 @@
 # TwinLearn
 
-TwinLearn is an AI-powered digital twin learning platform that creates a living model of a student to track knowledge state, forgetting patterns, learning progress, and learning behavior.
+TwinLearn is a digital learning platform that creates a dynamic digital twin for students based on their learning activity. It tracks learning progress, mastery, confidence, pace, motivation, and risk to provide personalized learning recommendations and support for students, teachers, and parents.
 
-## Features
+## Problem Statement
 
-* Student digital twin with knowledge and learning state
-* Knowledge mastery tracking
-* Forgetting curve and retention analysis
-* Concept risk calculation
-* Predicted days to mastery
-* Personalized concept recommendations
-* Learning path based on prerequisites
-* Study impact simulation
-* Quiz sessions and learning events
-* Student, teacher, parent, and admin roles
-* User authentication and registration
-* Dashboard for different user roles
-* Demo accounts with predefined student profiles
+Students have different learning patterns, levels of understanding, and learning speeds. Traditional learning systems mainly focus on scores and completed activities, making it difficult to identify learning gaps and predict when a student may struggle with a concept.
 
-## Project Structure
+TwinLearn addresses this problem by maintaining a digital representation of a student's learning state and using learning data to track mastery, predict learning risks, recommend learning paths, and provide personalized support.
 
-```text
-TwinLearn/
-├── backend/
-│   ├── auth.py
-│   ├── main.py
-│   ├── data/
-│   │   └── seeder.py
-│   ├── models/
-│   │   ├── database.py
-│   │   └── __init__.py
-│   ├── routers/
-│   │   ├── admin_router.py
-│   │   ├── auth_router.py
-│   │   ├── parent_router.py
-│   │   ├── student_router.py
-│   │   ├── teacher_router.py
-│   │   └── __init__.py
-│   └── twin_engine/
-│       ├── forgetting_curve.py
-│       ├── knowledge_tracer.py
-│       ├── recommendation_engine.py
-│       ├── twin_engine.py
-│       └── __init__.py
-├── frontend/
-│   ├── static/
-│   │   ├── css/
-│   │   │   └── app.css
-│   │   └── js/
-│   │       └── app.js
-│   └── templates/
-│       └── index.html
-└── twinlearn.db
+## Key Features
+
+* Digital twin for each student that tracks mastery, confidence, learning pace, motivation, and risk
+* Knowledge tracing to update student mastery based on quiz performance
+* Forgetting curve to estimate concept retention and identify concepts that may require review
+* Personalized learning recommendations and learning paths
+* AI-adaptive quizzing based on the student's current mastery level
+* Simulation mode for projecting learning outcomes based on study time and duration
+* Predictive risk alerts for concepts where students may face difficulties
+* Student dashboard for tracking learning progress
+* Teacher dashboard for monitoring students and class-level risks
+* Parent dashboard for viewing student progress
+* Admin dashboard for managing users and viewing analytics
+* Authentication and role-based access for students, teachers, parents, and administrators
+
+## Tech Stack
+
+### Backend
+
+* Python
+* FastAPI
+* SQLAlchemy
+* SQLite
+* JWT Authentication
+* Bcrypt
+
+### Frontend
+
+* HTML
+* CSS
+* JavaScript
+
+## How to Run
+
+### 1. Clone the repository
+
+```bash
+git clone <repository-url>
+cd TwinLearn
 ```
 
-## Backend
+### 2. Navigate to the backend
 
-The backend is built with FastAPI and provides the API, authentication, database operations, role-based routers, and learning engine.
+```bash
+cd backend
+```
 
-The main backend components are:
+### 3. Install the required packages
 
-* `auth.py` handles password hashing, password verification, and access tokens.
-* `main.py` creates the FastAPI application and registers the application routers.
-* `models/database.py` defines the database models and SQLite database connection.
-* `routers/` contains separate API routes for authentication, students, teachers, parents, and admins.
-* `twin_engine/` contains the digital twin, knowledge tracing, forgetting curve, and recommendation logic.
-* `data/seeder.py` creates the concepts, demo users, and student twin data.
+```bash
+pip install fastapi uvicorn sqlalchemy python-jose passlib bcrypt
+```
 
-## Digital Twin
-
-The student twin stores information including:
-
-* Knowledge mastery for concepts
-* Forgetting parameters
-* Learning style
-* Confidence score
-* Learning pace
-* Attention span
-* Motivation trend
-* Concept risk scores
-* Predicted mastery
-* Overall learning risk
-
-## Learning Engine
-
-The learning engine includes:
-
-### Knowledge Tracer
-
-Tracks and updates the student's knowledge state based on learning activity.
-
-### Forgetting Curve
-
-Calculates retrievability and models how retention changes over time.
-
-### Recommendation Engine
-
-Ranks concepts based on mastery, risk, prerequisites, difficulty, and learning pace to generate recommended learning concepts.
-
-### Study Impact Simulation
-
-Simulates the effect of studying for a selected number of minutes per day over a selected number of days and provides projected mastery, retention, and score.
-
-## Frontend
-
-The frontend provides the user interface for the TwinLearn application.
-
-It includes:
-
-* Landing page
-* Login and registration
-* Student dashboard
-* Teacher dashboard
-* Parent dashboard
-* Admin dashboard
-* Learning recommendations
-* Quiz functionality
-* Learning progress
-* Study simulation
-
-## Database
-
-TwinLearn uses SQLite for data storage.
-
-The database contains information for:
-
-* Users
-* Student twins
-* Concepts
-* Quiz sessions
-* Learning events
-
-## Demo Accounts
-
-All demo accounts use the password `demo123`.
-
-| Role    | Email                                       |
-| ------- | ------------------------------------------- |
-| Student | [alex@demo.com](mailto:alex@demo.com)       |
-| Student | [priya@demo.com](mailto:priya@demo.com)     |
-| Student | [james@demo.com](mailto:james@demo.com)     |
-| Teacher | [ms.chen@demo.com](mailto:ms.chen@demo.com) |
-| Parent  | [parent@demo.com](mailto:parent@demo.com)   |
-| Admin   | [admin@demo.com](mailto:admin@demo.com)     |
-
-The three student accounts contain different predefined learning profiles.
-
-## Running the Project
-
-Open a terminal in the `TwinLearn/backend` directory and start the FastAPI application.
+### 4. Start the application
 
 ```bash
 uvicorn main:app --reload
 ```
 
-The application runs at:
+### 5. Open the application
+
+Open the following URL in your browser:
 
 ```text
 http://localhost:8000
 ```
 
-The API health endpoint is:
+The application provides separate interfaces for students, teachers, parents, and administrators based on the user's role.
 
-```text
-http://localhost:8000/api/health
-```
+## Team Members
 
-The frontend is served by the FastAPI application.
-
-## Seeding Demo Data
-
-To reset and populate the database with the predefined concepts, users, and student profiles, run:
-
-```bash
-python data/seeder.py
-```
-
-This clears the existing learning data and creates the demo data again.
+* Bharat
+* Hitakshi
+* Swastika
+* Pallavi
